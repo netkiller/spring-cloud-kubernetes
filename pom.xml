@@ -67,11 +67,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 	</dependencies>
 
 	<modules>
 		<module>service</module>
 		<module>ConfigMaps</module>
+		<module>provider</module>
+		<module>consumer</module>
 	</modules>
 
 </project>
