@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Build-Jdk-Spec: 14
-Implementation-Title: service
+Implementation-Title: webflux
 Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor: Netkiller Spring Cloud 手札
 Created-By: Maven Integration for Eclipse

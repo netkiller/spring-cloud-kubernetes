@@ -7,9 +7,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>cn.netkiller</groupId>
-	<artifactId>service</artifactId>
+	<artifactId>webflux</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>service</name>
+	<name>webflux</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -20,13 +20,61 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-kubernetes-discovery</artifactId>
 		</dependency>
+		<!-- <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-kubernetes</artifactId> </dependency> -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-kubernetes</artifactId>
+			<artifactId>spring-cloud-starter-kubernetes-config</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>1.2.2</version>
+				<configuration>
+					<imageName>${docker.registry}/${docker.registry.name}/${project.artifactId}</imageName>
+					<baseImage>${docker.image}</baseImage>
+					<maintainer>netkiller@msn.com</maintainer>
+					<volumes>/tmp</volumes>
+					<workdir>/srv</workdir>
+					<exposes>8080</exposes>
+					<env>
+						<JAVA_OPTS>-server -Xms128m -Xmx256m</JAVA_OPTS>
+					</env>
+					<entryPoint>["sh", "-c", "java ${JAVA_OPTS} -jar /srv/${project.build.finalName}.jar ${SPRING_OPTS}"]</entryPoint>
+					<resources>
+						<resource>
+							<targetPath>/srv</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+					<!-- <image>${docker.image.prefix}/${project.artifactId}</image> -->
+					<!-- <newName>${docker.image.prefix}/${project.artifactId}:${project.version}</newName> -->
+					<!-- <serverId>docker-hub</serverId> -->
+					<registryUrl>http://${docker.registry}/v2/</registryUrl>
+					<imageTags>
+						<!-- <imageTag>${project.version}</imageTag> -->
+						<imageTag>latest</imageTag>
+					</imageTags>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.netkiller.consumer.feign.ProviderClient;
@@ -31,7 +32,7 @@ public class ConsumerController {
 	}
 
 	@GetMapping("/instance")
-	public List<ServiceInstance> getInstance(String instanceId) {
+	public List<ServiceInstance> getInstance(@RequestParam("instanceId") String instanceId) {
 		return discoveryClient.getInstances(instanceId);
 	}
 
@@ -39,4 +40,5 @@ public class ConsumerController {
 	public String ping() {
 		return OperationResponse.builder().status(true).data(providerClient.ping()).build();
 	}
+
 }

@@ -1,11 +1,11 @@
-package cn.netkiller.provider;
+package cn.netkiller.provider.controller;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+//import org.apache.commons.logging.Log;
+//import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ProviderController {
 
-	@SuppressWarnings("unused")
-	private static final Log LOG = LogFactory.getLog(ProviderController.class);
+//	@SuppressWarnings("unused")
+//	private static final Log LOG = LogFactory.getLog(ProviderController.class);
 
 	@Autowired
 	private DiscoveryClient discoveryClient;
