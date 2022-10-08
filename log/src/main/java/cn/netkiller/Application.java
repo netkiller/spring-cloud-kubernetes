@@ -1,4 +1,4 @@
-package cn.netkiller.log;
+package cn.netkiller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +8,7 @@ public class Application
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        System.out.println( "AOP Log!" );
         SpringApplication.run(Application.class, args);
     }
 }

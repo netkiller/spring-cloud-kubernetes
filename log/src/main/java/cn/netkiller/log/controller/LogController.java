@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.netkiller.log.MarketLog;
 import cn.netkiller.log.LogMarker;
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,4 +50,18 @@ public class LogController {
 		logger.info(msg);
 		return msg;
 	}
+
+	@MarketLog("test-hello")
+	@GetMapping("/hello")
+	public String hello() {
+		System.out.println("真实的方法执行");
+		return "OK";
+	}
+
+	// @GetMapping("/getUserById")
+	// @ControllerMethodLog
+	// public String getUserById(@RequestParam(name = "id", required = true) String id) {
+	// return "OK";
+	// }
+
 }

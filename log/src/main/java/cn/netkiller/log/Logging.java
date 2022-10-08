@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 public class Logging {
 
-	private static final Logger logger = null;
+	private static Logger logger = null;
 	public Logging(String name) {
 		// TODO Auto-generated constructor stub
 		logger = LoggerFactory.getLogger(name);
