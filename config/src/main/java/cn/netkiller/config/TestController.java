@@ -5,13 +5,12 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @EnableConfigurationProperties(KeyValueConfig.class)
-@RefreshScope
+//@RefreshScope
 public class TestController {
 	@Autowired
 	private KeyValueConfig keyValueConfig;
